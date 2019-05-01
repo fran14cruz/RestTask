@@ -1,6 +1,7 @@
 package me.restapi.dao.Imp;
 
 import me.restapi.dao.TaskDao;
+import me.restapi.dao.mapper.TaskMapper;
 import me.restapi.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -35,8 +36,8 @@ public class TaskDaoImp implements TaskDao {
     }
 
     @Override
-    public Task getTass(UUID id) {
-        String query = "SELECT status, date FROM task WHERE id = :id";
+    public Task getTask(UUID id) {
+        String query = "SELECT id, status, date FROM task WHERE id = :id";
 
         SqlParameterSource parameterSource = new MapSqlParameterSource("id", id);
 
