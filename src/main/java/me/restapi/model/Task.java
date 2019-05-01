@@ -1,5 +1,7 @@
 package me.restapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.UUID;
 
 public class Task {
@@ -8,6 +10,7 @@ public class Task {
     private String status;
     private String timestamp;
 
+    @JsonIgnore
     public UUID getUuid() {
         return uuid;
     }
