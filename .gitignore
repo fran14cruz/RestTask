@@ -1,2 +1,3 @@
 .idea/
 RestTask.iml
+src/main/resources/application-dev.properties
