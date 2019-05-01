@@ -1,3 +1,19 @@
-.idea/
-RestTask.iml
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Intellij #
+.idea
+*.iml
+*.log
+
+# logback
+logback.out.xml
+
+# Local config #
 src/main/resources/application-dev.properties
+
+RestTask/target
