@@ -18,9 +18,8 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
-    @GetMapping(path = "task/{id}")
-    public @ResponseBody
-    Task getTask(@PathVariable UUID id) {
+    @GetMapping(value = "/task/{id}")
+    public Task getTask(@PathVariable UUID id) {
         return taskService.getTask(id);
     }
 }
