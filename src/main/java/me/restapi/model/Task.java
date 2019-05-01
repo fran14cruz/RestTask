@@ -1,13 +1,12 @@
 package me.restapi.model;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class Task {
 
     private UUID uuid;
     private String status;
-    private Date timestamp;
+    private String timestamp;
 
     public UUID getUuid() {
         return uuid;
@@ -25,11 +24,11 @@ public class Task {
         this.status = status;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 

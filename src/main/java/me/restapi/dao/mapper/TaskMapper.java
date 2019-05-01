@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.UUID;
 
 public class TaskMapper implements RowMapper {
@@ -15,7 +14,7 @@ public class TaskMapper implements RowMapper {
 
         task.setUuid(rs.getObject("id", UUID.class));
         task.setStatus(rs.getObject("status", String.class));
-        task.setTimestamp(rs.getObject("date", Date.class));
+        task.setTimestamp(rs.getObject("date", String.class));
 
         return task;
     }

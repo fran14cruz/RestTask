@@ -5,6 +5,8 @@ import me.restapi.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Service
@@ -13,7 +15,16 @@ public class TaskService {
     @Autowired
     private TaskDao taskDao;
 
-    public UUID createTask(Task task) {
+    public UUID createTask() {
+        Task task = new Task();
+
+        task.setStatus("created");
+
+        LocalTime localDateTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_TIME;
+
+        task.setTimestamp(formatter.format(localDateTime));
+
         return taskDao.createTask(task);
     }
 
