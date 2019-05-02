@@ -16,19 +16,26 @@ public class TaskService {
     private TaskDao taskDao;
 
     public UUID createTask() {
+
         Task task = new Task();
 
         task.setStatus("created");
-
-        LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-
-        task.setTimestamp(formatter.format(localDateTime));
+        task.setTimestamp(dateTimeIsoFormat());
 
         return taskDao.createTask(task);
+
     }
 
     public Task getTask(UUID id) {
         return taskDao.getTask(id);
     }
+
+    private String dateTimeIsoFormat() {
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+
+        return formatter.format(localDateTime);
+    }
+
  }
