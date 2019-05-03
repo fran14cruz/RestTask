@@ -8,5 +8,6 @@ public interface TaskDao {
 
     UUID createTask(Task task);
     Task getTask(UUID id);
+    void updateTask(Task task);
 
 }

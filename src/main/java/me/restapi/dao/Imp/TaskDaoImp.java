@@ -36,6 +36,21 @@ public class TaskDaoImp implements TaskDao {
     }
 
     @Override
+    public void updateTask(Task task) {
+        String query = "UPDATE task SET status = :status, date = :date " +
+                "WHERE id = :id";
+
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        SqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("id", task.getUuid())
+                .addValue("status", task.getStatus())
+                .addValue("date", task.getTimestamp());
+
+        namedJdbc.update(query, parameterSource, holder);
+    }
+
+    @Override
     public Task getTask(UUID id) {
         String query = "SELECT id, status, date FROM task WHERE id = :id";
 
