@@ -10,11 +10,13 @@
 *.iml
 *.log
 
+# Apple #
+.DS_Store
+
 # logback
 logback.out.xml
 
 # Local config #
 src/main/resources/application-dev.properties
 
-RestTask/target
 target/**
