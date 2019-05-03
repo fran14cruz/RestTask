@@ -17,3 +17,4 @@ logback.out.xml
 src/main/resources/application-dev.properties
 
 RestTask/target
+target/**

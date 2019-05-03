@@ -3,15 +3,13 @@ package me.restapi.controller;
 import me.restapi.model.Task;
 import me.restapi.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.constraints.NotNull;
-import java.util.Set;
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @RestController
@@ -27,25 +25,18 @@ public class TaskController {
     }
 
     @GetMapping(value = "/task/{id}")
-    public ResponseEntity<Task> getTask(@PathVariable("id") @NotNull UUID id) {
+    public ResponseEntity<Task> getTask(@PathVariable("id") @NotBlank String id) {
 
-        Task task = taskService.getTask(id);
-
-        if (task == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            UUID taskId = UUID.fromString(id);
+            Task task = taskService.getTask(taskId);
+            return new ResponseEntity<>(task, HttpStatus.OK);
+        } catch (IncorrectResultSizeDataAccessException ex) {
+            if (ex.getActualSize() == 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            throw ex;
         }
 
-        return new ResponseEntity<>(task, HttpStatus.OK);
-    }
-
-    @ExceptionHandler(value = { ConstraintViolationException.class })
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public String handleResourceNotFoundException(ConstraintViolationException e) {
-        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-        StringBuilder strBuilder = new StringBuilder();
-        for (ConstraintViolation<?> violation : violations ) {
-            strBuilder.append(violation.getMessage() + "\n");
-        }
-        return strBuilder.toString();
     }
 }
