@@ -1,4 +1,4 @@
 # Rest API web service
-### POST and GET requests
+### _POST_ and _GET_ requests
 #### Model: task
-#### In folder "scripts" .jar file can be used to deploy the application.
+#### In folder _"scripts"_, file _"deploy.sh"_ can be used to deploy the application.
